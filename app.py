@@ -18,7 +18,14 @@ root_color = "#6c809a"
 root.config(bg=root_color)
 
 #define functions
+def change_font(event):
+    if options_var.get() == "normal":
+        my_font = (font_family.get(),size_var.get())
+    else:
+        my_font = (font_family.get(),size_var.get(),options_var.get())#
 
+    #change the font
+    input_text.config(font=my_font)
 
 #---Define Layour--#
 
@@ -45,7 +52,7 @@ save_btn.grid(row=0,column=2,padx=5,pady=5)
 #list of fonts
 families = ["Terminal","Modern","Script","SimSun"]
 font_family = StringVar()
-font_family_dropdown = tkinter.OptionMenu(menu_frame,font_family,*families)
+font_family_dropdown = tkinter.OptionMenu(menu_frame,font_family,*families,command=change_font)
 font_family.set("SimSun")
 font_family_dropdown.config(width=15)
 font_family_dropdown.grid(row=0,column=3)
@@ -53,7 +60,7 @@ font_family_dropdown.grid(row=0,column=3)
 #list of font size
 size = [10,12,14,16]
 size_var = IntVar()
-size_dropdown = tkinter.OptionMenu(menu_frame,size_var,*size)
+size_dropdown = tkinter.OptionMenu(menu_frame,size_var,*size,command=change_font)
 size_dropdown.config(width=10)
 size_var.set(12)
 size_dropdown.grid(row=0,column=4)
@@ -61,7 +68,7 @@ size_dropdown.grid(row=0,column=4)
 #list of options
 options = ["bold","italic","normal"]
 options_var = StringVar()
-options_dropdown = tkinter.OptionMenu(menu_frame,options_var,*options)
+options_dropdown = tkinter.OptionMenu(menu_frame,options_var,*options,command=change_font)
 options_var.set("normal")
 options_dropdown.config(width=10)
 options_dropdown.grid(row=0,column=5)
